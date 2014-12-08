@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-class Show extends CI_Controller {
+require __DIR__.'/base.php';
+class Show extends Base {
     public function __construct(){
         parent::__construct();
     }

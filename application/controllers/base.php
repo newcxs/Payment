@@ -10,6 +10,9 @@ class Base extends CI_Controller {
             'url' => $url
         ]);
     }
+    static public function loadModel($model){
+        require __DIR__.'/../models/'.$model.'.php';
+    }
     public function install(){
         $this->load->library('migration');
         $this->migration->version(1);

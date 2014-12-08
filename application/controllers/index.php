@@ -1,13 +1,13 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-class Index extends CI_Controller {
+require __DIR__.'/base.php';
+class Index extends Base {
     public function __construct(){
         parent::__construct();
     }
     public function index(){
-        $this->load->model('sites');
-        $res = $this->sites->findByReferrer('123');
-        print_r($res);
+        self::loadModel('Sites');
+        $test = Sites::findByReferrer('123');
+        print_r($test);
         //$this->load->view('home');
     }
 }

@@ -7,4 +7,10 @@ abstract class Controller extends BaseController {
 
 	use ValidatesRequests;
 
+    static public function showMsg($msg, $url='javascript:history.go(-1);'){
+        return view('msg')
+                    ->withMsg($msg)
+                    ->withUrl($url);
+    }
+
 }

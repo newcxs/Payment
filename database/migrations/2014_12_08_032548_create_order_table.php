@@ -14,7 +14,7 @@ class CreateOrderTable extends Migration {
         Schema::dropIfExists('order');
         Schema::create('order', function(Blueprint $table){
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->string('id', 32)->unique();
             $table->string('up_id', 64);
             $table->string('type', 32);
             $table->string('site_id', 16);
@@ -23,7 +23,9 @@ class CreateOrderTable extends Migration {
             $table->string('return_url', 128);
             $table->string('cash', 16);
             $table->string('hash', 32);
-            $table->string('status', 2);
+            $table->string('create_time', 16);
+            $table->string('finish_time', 16);
+            $table->string('status', 2); //0-Created 1-Sent 2-OK
             $table->primary('id');
         });
     }

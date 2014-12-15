@@ -25,7 +25,7 @@ class CreateOrderTable extends Migration {
             $table->string('hash', 32);
             $table->string('create_time', 16);
             $table->string('finish_time', 16);
-            $table->string('status', 2); //0-Created 1-Sent 2-OK
+            $table->string('status', 2); //0-Created 1-OK
             $table->primary('id');
         });
     }

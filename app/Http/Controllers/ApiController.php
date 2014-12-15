@@ -22,7 +22,7 @@ class ApiController extends Controller {
         $site = Sites::findByReferrer($referrer);
         if(!$site) return self::buildRes('-1');
         $newHash = md5($receive['data'].$site->key);
-        if($newHash !== $receive['hash']) return self::buildRes('-1');
+        if($newHash != $receive['hash']) return self::buildRes('-1');
 
         $data = json_decode($receive['data'], true);
         $payment = $data['type'];
@@ -38,6 +38,8 @@ class ApiController extends Controller {
                 $payment = '00';
                 break;
         }
+
+        if($payment != '01') return buildRes('-1', 'Payment not supported');
 
         $order_id = date("YmdHis").$payment.rand(1000, 9999);
         $hash = md5($order_id.$newHash);
@@ -60,7 +62,7 @@ class ApiController extends Controller {
         return buildRes('1', 'success', [
             'order_id' => $order_id,
             'hash' => $hash,
-            'pay_url' => URL::to('/pay/'.$hash)
+            'pay_url' => URL::to('/'.$data['type'].'/submit/'.$hash)
         ]);
     }
 }
